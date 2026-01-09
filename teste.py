@@ -1,6 +1,6 @@
-var = input("Digite um numero: ")
+var = input("Digite: ")
 
-if var == "1": 
-    print("um")
+if var == "bom dia":
+    print("Isso ai")
 else: 
-    print("erro")
+    print("Erro")

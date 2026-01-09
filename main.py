@@ -72,7 +72,6 @@ def main():
             else: 
                 print("Opção invalida 2, tente novamente...\n")
         elif opcao_menu == "3":
-            print("teste")
             input_personalizado = input("Digite seu input: ")
             inputPersonalizado(input_personalizado)
         else : 
