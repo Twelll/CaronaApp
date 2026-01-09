@@ -28,7 +28,7 @@ def consultarBanco():
             nome, tipo, data_carona, status = linha
             print(f"Nome: {nome} | Tipo: {tipo} | Data/Hora: {data_carona} | Status: {status}")
     else:
-        print("Nenhuma carona encontrada.")
+        print("SISTEMA: Nenhuma carona encontrada.")
     
     con.close()
     
@@ -47,7 +47,7 @@ def inputPersonalizado(input_personalizado):
             nome, tipo, data_carona, status = linha
             print(f"Nome: {nome} | Tipo: {tipo} | Data/Hora: {data_carona} | Status: {status}")
     else:
-        print("Nenhuma carona encontrada.")
+        print("SISTEMA: Nenhuma carona encontrada.")
     
     con.close()
     

@@ -1,4 +1,6 @@
-from datetime import datetime
+var = input("Digite um numero: ")
 
-agora = datetime.now()
-print(agora)
+if var == "1": 
+    print("um")
+else: 
+    print("erro")

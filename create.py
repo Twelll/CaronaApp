@@ -20,7 +20,7 @@ def inicializar_banco():
     # Executa todas as instruções do arquivo
     try:
         con.executescript(sql_script)
-        print("Banco de dados atualizado com sucesso!")
+        print("SISTEMA: Banco de dados atualizado com sucesso!")
     except sqlite3.Error as e:
         print(f"Erro ao executar SQL: {e}")
     finally:
