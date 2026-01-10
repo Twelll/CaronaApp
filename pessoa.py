@@ -3,13 +3,14 @@ from  db import conectar
 def cadastrarPessoa():
     print("Insira os seguintes dados abaixo para cadastrar uma pessoa\n")
     nome = input("Nome: ")
-    contato = input("\nContato: ")
+    contato = input("Contato: ")
+    descricao = input("Descrição(opcional): ")
     
     con = conectar()
         
     con.execute(
-    "INSERT INTO pessoas (nome, contato) VALUES (?, ?)", 
-    (nome, contato)
+    "INSERT INTO pessoas (nome, contato, descricao) VALUES (?, ?, ?)", 
+    (nome, contato, descricao)
     )
         
     con.commit()

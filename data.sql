@@ -5,13 +5,16 @@ PRAGMA foreign_keys = ON;
 CREATE TABLE IF NOT EXISTS pessoas (
     id_pessoa INTEGER PRIMARY KEY,
     nome TEXT NOT NULL,
-    contato TEXT NOT NULL
+    contato TEXT NOT NULL,
+    descricao TEXT
 );
 
 CREATE TABLE IF NOT EXISTS carona (
     id_carona INTEGER PRIMARY KEY,
-    tipo TEXT NOT NULL CHECK (tipo IN ('ida', 'volta')),
-    data_carona DATETIME NOT NULL
+    origem TEXT NOT NULL,
+    destino TEXT NOT NULL,
+    data_carona DATETIME NOT NULL,
+    descricao TEXT
 );
 
 CREATE TABLE IF NOT EXISTS pessoa_carona (

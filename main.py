@@ -15,7 +15,7 @@ def main():
         print("0 - sair")
         print("1 - Consultas")
         print("2 - Cadastros")
-        print("3 - Input db")
+        print("3 - Query(avançado): ")
         opcao_menu = input("Digite sua opção: ")
         
         if opcao_menu == "0":
