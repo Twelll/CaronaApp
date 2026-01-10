@@ -61,3 +61,121 @@ def inputPersonalizado(sql):
     finally:
         if con:
             con.close()
+
+def consultarPessoa():
+    con = conectar()
+    cur = con.cursor()
+    
+    cur.execute("SELECT * FROM pessoas")
+    
+    resultados = cur.fetchall()
+    
+    if resultados:
+        print("\n=== Pessoas cadastradas ===")
+        for linha in resultados:
+            id_pessoa, nome, contato, descricao = linha
+            print(f"ID: {id_pessoa} | Nome: {nome} | Contato: {contato} | Descrição: {descricao} |")
+    else:
+        print("SISTEMA: Nenhuma pessoa cadastrada.")
+    
+    con.close()
+    
+def consultarViagens():
+    con = conectar()
+    cur = con.cursor()
+    
+    cur.execute("SELECT * FROM carona")
+    
+    resultados = cur.fetchall()
+    
+    if resultados:
+        print("\n=== Viagens cadastradas ===")
+        for linha in resultados:
+            id_carona, origem, destino, data_carona, descricao = linha
+            print(f"ID: {id_carona} | Origem: {origem} | Destino: {destino} | Data/Hora: {data_carona} | Descrição: {descricao}")
+    else:
+        print("SISTEMA: Nenhuma Viagem encontrada.")
+    
+    con.close()
+    
+def consultarCaronas():
+    con = conectar()
+    cur = con.cursor()
+    
+    cur.execute("""
+        SELECT p.nome, c.origem, c.destino, c.data_carona, r.status
+        FROM pessoas p
+        JOIN pessoa_carona r ON p.id_pessoa = r.id_pessoa
+        JOIN carona c ON c.id_carona = r.id_carona
+        ORDER BY c.data_carona
+    """)
+    
+    resultados = cur.fetchall()
+    
+    if resultados:
+        print("\n=== Caronas cadastradas ===")
+        for linha in resultados:
+            nome, origem, destino, data_carona, status = linha
+            print(f"Nome: {nome} | Origem: {origem} | Destino: {destino} | Data/Hora: {data_carona} | Status: {status}")
+    else:
+        print("SISTEMA: Nenhuma carona encontrada.")
+    
+    con.close()
+    
+
+def consultarPendencias():
+    con = conectar()
+    cur = con.cursor()
+    
+    cur.execute("""
+        SELECT p.nome, c.origem, c.destino, c.data_carona, r.status
+        FROM pessoas p
+        JOIN pessoa_carona r ON p.id_pessoa = r.id_pessoa
+        JOIN carona c ON c.id_carona = r.id_carona
+        WHERE r.status = 'pendente'
+        ORDER BY c.data_carona;
+    """)
+    
+    resultados = cur.fetchall()
+    
+    if resultados:
+        print("\n=== Pendências cadastradas ===")
+        for linha in resultados:
+            nome, origem, destino, data_carona, status = linha
+            print(
+                f"Nome: {nome} | Origem: {origem} | Destino: {destino} | "
+                f"Data/Hora: {data_carona} | Status: {status}"
+            )
+    else:
+        print("SISTEMA: Nenhuma pendência encontrada.")
+    
+    con.close()
+
+
+def consultarPagos():
+    con = conectar()
+    cur = con.cursor()
+    
+    cur.execute("""
+        SELECT p.nome, c.origem, c.destino, c.data_carona, r.status
+        FROM pessoas p
+        JOIN pessoa_carona r ON p.id_pessoa = r.id_pessoa
+        JOIN carona c ON c.id_carona = r.id_carona
+        WHERE r.status = 'pago'
+        ORDER BY c.data_carona;
+    """)
+    
+    resultados = cur.fetchall()
+    
+    if resultados:
+        print("\n=== Pagos cadastradas ===")
+        for linha in resultados:
+            nome, origem, destino, data_carona, status = linha
+            print(
+                f"Nome: {nome} | Origem: {origem} | Destino: {destino} | "
+                f"Data/Hora: {data_carona} | Status: {status}"
+            )
+    else:
+        print("SISTEMA: Nenhum pagamento encontrado.")
+    
+    con.close()

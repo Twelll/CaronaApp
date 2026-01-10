@@ -1,6 +1,7 @@
 from db import conectar
 from datetime import datetime
 
+
 def criarCarona():
     print("Insira os seguintes dados abaixo para criar uma carona\n")
     origem = input("Origem: ")

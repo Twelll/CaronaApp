@@ -1,9 +1,9 @@
-from db import consultarBanco
+from db import *
 from pessoa import cadastrarPessoa
 from carona import criarCarona
 from pessoa_carona import pessoaCarona
 from create import inicializar_banco  
-from db import inputPersonalizado
+
 
 def main(): 
     inicializar_banco()
@@ -35,24 +35,15 @@ def main():
             if opcao_sub == "1":
                 consultarBanco()
             elif opcao_sub == "2":
-                print("1")
-            #    consultarPessoa()
+                consultarPessoa()
             elif opcao_sub == "3":
-                print("1")
-
-             #   consultarViagens()
+                consultarViagens()
             elif opcao_sub == "4":
-                print("1")
-
-              #  consultarCaronas()
+                consultarCaronas()                
             elif opcao_sub == "5":
-                print("1")
-
-               # consultarPendencias()
+                  consultarPendencias()
             elif opcao_sub == "6": 
-                print("1")
-
-               # consultarPagos()
+                consultarPagos()
             else:
                 print("Opção invalida 1, tente novamente...\n")
               
@@ -70,12 +61,12 @@ def main():
             elif opcao_sub == "3":
                 pessoaCarona()
             else: 
-                print("Opção invalida 2, tente novamente...\n")
+                print("Opção invalida, tente novamente...\n")
         elif opcao_menu == "3":
             input_personalizado = input("Digite seu input: ")
             inputPersonalizado(input_personalizado)
         else : 
-            print("Nenhuma opção valida 3, tente novamente...\n")
+            print("Nenhuma opção valida, tente novamente...\n")
             
 # chama a função
 if __name__ == "__main__":
