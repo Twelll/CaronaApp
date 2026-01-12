@@ -16,3 +16,4 @@ def cadastrarPessoa():
     con.commit()
     con.close()
     print("Pessoa cadastrada com sucesso!")
+    

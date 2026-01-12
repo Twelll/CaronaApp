@@ -2,7 +2,8 @@ from db import *
 from pessoa import cadastrarPessoa
 from carona import criarCarona
 from pessoa_carona import pessoaCarona
-from create import inicializar_banco  
+from create import inicializar_banco 
+ 
 
 
 def main(): 
@@ -14,7 +15,7 @@ def main():
         
         print("0 - sair")
         print("1 - Consultas")
-        print("2 - Cadastros")
+        print("2 - Alterações")
         print("3 - Query(avançado): ")
         opcao_menu = input("Digite sua opção: ")
         
@@ -60,6 +61,8 @@ def main():
                 criarCarona()
             elif opcao_sub == "3":
                 pessoaCarona()
+            elif opcao_sub == "4":
+                alterarStatus()
             else: 
                 print("Opção invalida, tente novamente...\n")
         elif opcao_menu == "3":

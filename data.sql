@@ -25,3 +25,4 @@ CREATE TABLE IF NOT EXISTS pessoa_carona (
     FOREIGN KEY (id_pessoa) REFERENCES pessoas(id_pessoa),
     FOREIGN KEY (id_carona) REFERENCES carona(id_carona)
 );
+
