@@ -1,7 +1,15 @@
-from  db import conectar 
+from  core.db import conectar 
 
 def cadastrarPessoa():
+    """
+    Registra pessoas no banco de dados
+    A função interage com o usuario requisitando informações pessoais(nome,contato,descrição)
+    de uma pessoa
+    """
+    
+    #Requisita as informacoes pessoais
     print("Insira os seguintes dados abaixo para cadastrar uma pessoa\n")
+    
     nome = input("Nome: ")
     contato = input("Contato: ")
     descricao = input("Descrição(opcional): ")

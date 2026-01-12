@@ -1,0 +1,23 @@
+# --- Python  ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# --- Ambientes Virtuais ---
+venv/
+.venv/
+env/
+
+# --- Banco de Dados  ---
+*.db
+*.sqlite3
+
+# --- Sistema ---
+*.logq
+.DS_Store    # Arquivo de sistema do Mac
+Thumbs.db    # Arquivo de sistema do Windows
+
+# --- IDEs 
+.vscode/
+.idea/

@@ -25,11 +25,12 @@ CaronaManager/
 │   ├─ pessoa_carona.py
 │   └─ create.py
 │
-├─ ui/                 # Interface
-│   └─ main.py
+├─ ui/                 # Interface(Desenvolvida futuramente)
+│   └─ arquivos
 │
-├─ requirements.txt    # Dependências do projeto
+├─ requirements.txt    # Dependências do projeto(No momento nenhuma)
 ├─ README.md           # Este arquivo
+├─ main.py
 └─ .gitignore          # Arquivos ignorados pelo Git
 ```
 
@@ -67,7 +68,7 @@ git clone https://github.com/seu-usuario/CaronaManager.git
 cd CaronaManager
 ```
 
-2. Instale dependências (se houver):
+2. Instale dependências (nenhuma no momento):
 
 ```bash
 pip install -r requirements.txt
@@ -76,16 +77,16 @@ pip install -r requirements.txt
 3. Execute o programa:
 
 ```bash
-python ui/main.py
+python main.py
 ```
 
 ---
 
 ## 🧩 Estrutura do banco de dados
 
-* **pessoas**: id_pessoa, nome, contato
-* **carona**: id_carona, tipo (ida/volta), status (pago/pendente), data_carona
-* **pessoa_carona**: id_rel, id_carona, id_pessoa, status
+* **pessoas**: id_pessoa, nome, contato, descricao(opcional)
+* **carona**: id_carona, origem, destino, data_carona, descricao(opcional)
+* **pessoa_carona**: id_rel, id_carona, id_pessoa, status(pago/pendente)
 
 O banco é **SQLite** e é criado automaticamente ao rodar o programa.
 

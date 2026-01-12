@@ -1,11 +1,9 @@
-from db import *
-from pessoa import cadastrarPessoa
-from carona import criarCarona
-from pessoa_carona import pessoaCarona
-from create import inicializar_banco 
+from core.db import *
+from core.pessoa import cadastrarPessoa
+from core.carona import criarCarona
+from core.pessoa_carona import pessoaCarona
+from core.create import inicializar_banco 
  
-
-
 def main(): 
     inicializar_banco()
     

@@ -1,13 +1,36 @@
 import sqlite3
+import os
 
-DB_NAME = "caronas.db"
+# 1. Pega a pasta onde este ficheiro está (ex: .../ProjetoCarona/core)
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+# 2. Sobe um nível para a raiz (ex: .../ProjetoCarona)
+ROOT_DIR = os.path.dirname(BASE_DIR)
+
+# 3. Define a pasta de dados
+DATA_DIR = os.path.join(ROOT_DIR, "data")
+
+# --- A CORREÇÃO ESTÁ AQUI ---
+# Antes estava provavelmente: os.path.join(ROOT_DIR, "data.sql")
+# DEVE SER:
+SQL_FILE = os.path.join(DATA_DIR, "data.sql") 
+
+# Define também o banco na mesma pasta
+DB_NAME = os.path.join(DATA_DIR, "caronas.db")
 
 def conectar():
+    """
+    Estabelece a conexão com o banco de dados SQLite e ativa a verificação de chaves estrangeiras.
+    """
     con = sqlite3.connect(DB_NAME)
-    con. execute("PRAGMA foreign_keys = ON")
+    con.execute("PRAGMA foreign_keys = ON")
     return con
 
 def consultarBanco():
+    """
+    Lista todas as caronas associadas a pessoas, ordenadas por data.
+    Exibe apenas nomes e detalhes básicos da viagem.
+    """
     con = conectar()
     cur = con.cursor()
     
@@ -31,8 +54,13 @@ def consultarBanco():
     
     con.close()
 
-    
+#Temporario
 def inputPersonalizado(sql):
+    """
+    Executa uma instrução SQL arbitrária fornecida pelo usuário.
+    Identifica automaticamente se é uma consulta (SELECT) para exibir resultados
+    ou um comando de ação (INSERT, UPDATE, DELETE) para fazer commit.
+    """
     con = None
     try:
         con = conectar()
@@ -63,6 +91,9 @@ def inputPersonalizado(sql):
             con.close()
 
 def consultarPessoa():
+    """
+    Exibe todos os registros da tabela 'pessoas'.
+    """
     con = conectar()
     cur = con.cursor()
     
@@ -81,6 +112,9 @@ def consultarPessoa():
     con.close()
     
 def consultarViagens():
+    """
+    Exibe todos os registros da tabela 'carona' (apenas dados da viagem, sem passageiros).
+    """
     con = conectar()
     cur = con.cursor()
     
@@ -99,6 +133,10 @@ def consultarViagens():
     con.close()
     
 def consultarCaronas():
+    """
+    Lista detalhada de caronas com passageiros, incluindo os IDs de pessoa e carona.
+    Útil para identificar registros antes de realizar atualizações ou deleções.
+    """
     con = conectar()
     cur = con.cursor()
     
@@ -124,6 +162,9 @@ def consultarCaronas():
     
 
 def consultarPendencias():
+    """
+    Filtra e exibe apenas as relações passageiro-carona onde o status é 'pendente'.
+    """
     con = conectar()
     cur = con.cursor()
     
@@ -153,6 +194,9 @@ def consultarPendencias():
 
 
 def consultarPagos():
+    """
+    Filtra e exibe apenas as relações passageiro-carona onde o status é 'pago'.
+    """
     con = conectar()
     cur = con.cursor()
     
@@ -181,30 +225,28 @@ def consultarPagos():
     con.close()
     
 def alterarStatus():
+    """
+    Solicita ao usuário os IDs de pessoa e carona para atualizar o status financeiro para 'pago'.
+    Exibe a lista de caronas antes para facilitar a identificação dos IDs.
+    """
     con = conectar()
     cur = con.cursor()
 
-    consultarCaronas() # Mostra as caronas para o utilizador saber os IDs
-    
-    # É importante converter para int se os IDs no banco forem numéricos
+    consultarCaronas() 
+
     v_pessoa = int(input("Digite o ID_Pessoa: "))
     v_carona = int(input("Digite o ID da Carona: "))
     
-    # 1. Usamos ? como lugar para as variáveis
-    # 2. Passamos as variáveis numa tupla (v_pessoa, v_carona) como segundo argumento
-    # Nota: Assumi que queres filtrar pelo par (Pessoa + Carona) já que pediste os dois IDs
     sql = """
         UPDATE pessoa_carona
         SET status = 'pago'
         WHERE id_pessoa = ? AND id_carona = ?
     """
-    
     try:
         cur.execute(sql, (v_pessoa, v_carona))
         
-        # Verifica se alguma linha foi realmente alterada
         if cur.rowcount > 0:
-            con.commit() # Salva a alteração
+            con.commit() 
             print(f"\nSISTEMA: Sucesso! {cur.rowcount} registo(s) atualizado(s) para 'pago'.")
         else:
             print("\nSISTEMA: Nenhuma carona encontrada com esses IDs.")
@@ -213,4 +255,3 @@ def alterarStatus():
         print(f"ERRO: Não foi possível atualizar. Detalhes: {e}")
     finally:
         con.close()
-
