@@ -25,9 +25,6 @@ CaronaManager/
 │   ├─ pessoa_carona.py
 │   └─ create.py
 │
-├─ ui/                 # Interface(Desenvolvida futuramente)
-│   └─ arquivos
-│
 ├─ requirements.txt    # Dependências do projeto(No momento nenhuma)
 ├─ README.md           # Este arquivo
 ├─ main.py
@@ -51,12 +48,7 @@ CaronaManager/
 
 * Interface gráfica com Tkinter ou Flask
 * Atualização e exclusão de registros
-* Busca inteligente por caronas, pessoas e datas
 * Exportação de dados para CSV
-* Testes unitários completos
-* Validação de entradas e datas
-* Sistema de login de usuários (admin/usuário)
-
 ---
 
 ## 🎯 Como rodar

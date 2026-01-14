@@ -1,73 +1,74 @@
+import sys
 from core.db import *
 from core.pessoa import cadastrarPessoa
 from core.carona import criarCarona
 from core.pessoa_carona import pessoaCarona
 from core.create import inicializar_banco 
 
+def sair_programa():
+    print("Saindo do programa...\n")
+    sys.exit()
+
+def wrapper_query():
+    """Função para encapsular o input da query avançada"""
+    query = input("Digite sua Query SQL: ")
+    inputPersonalizado(query)
+
+# --- Definição dos Menus ---
+def navegar_menu(titulo, opcoes):
+    """
+    Função genérica para exibir e processar menus.
+    Retorna False apenas se o usuário escolher '0' (Voltar/Sair).
+    """
+    while True:
+        print(f"\n--- {titulo} ---")
+        for key, (descricao, _) in opcoes.items():
+            print(f"{key} - {descricao}")
+        
+        escolha = input("Digite sua opção: ")
+
+        if escolha in opcoes:
+            _, funcao = opcoes[escolha]
+            if funcao() is False:
+                break 
+        else:
+            print("Opção inválida, tente novamente...\n")
+
+def menu_consultas():
+    opcoes = {
+        "1": ("Consultar todo banco de dados", consultarBanco),
+        "2": ("Consultar pessoas", consultarPessoa),
+        "3": ("Consultar viagens", consultarViagens),
+        "4": ("Consultar Caronas", consultarCaronas),
+        "5": ("Pendencias", consultarPendencias),
+        "6": ("Pagos (Valor recibo)", consultarPagos),
+        "0": ("Voltar", lambda: False) 
+    }
+    navegar_menu("MENU - Consultas", opcoes)
+
+def menu_alteracoes():
+    opcoes = {
+        "1": ("Cadastrar pessoa", cadastrarPessoa),
+        "2": ("Cadastrar viagem", criarCarona),
+        "3": ("Cadastrar carona (vincular)", pessoaCarona),
+        "4": ("Alterar Status", lambda: print("Função alterarStatus não importada/definida neste contexto")), # Ajuste aqui com a função real
+        "0": ("Voltar", lambda: False)
+    }
+    navegar_menu("MENU - Alterações", opcoes)
+
+# --- Main ---
 def main(): 
     inicializar_banco()
     
-    while True:
+    # Menu Principal
+    opcoes_principais = {
+        "1": ("Consultas", menu_consultas),
+        "2": ("Alterações", menu_alteracoes),
+        "3": ("Query (Avançado)", wrapper_query),
+        "0": ("Sair", sair_programa)
+    }
 
-        print("\nMENU - Gerenciamento de Caronas")
-        
-        print("0 - sair")
-        print("1 - Consultas")
-        print("2 - Alterações")
-        print("3 - Query(avançado): ")
-        opcao_menu = input("Digite sua opção: ")
-        
-        if opcao_menu == "0":
-            print("Saindo do programa...\n")
-            break
-        elif opcao_menu == "1":
-    
-            print("\n1 - Consultar todo banco de dados")
-            print("2 - Consultar pessoas")
-            print("3 - Consultar viagens")
-            print("4 - Consultar Caronas")
-            print("5 - Pendencias")
-            print("6 - Pagos(Valor recibo)")
-            opcao_sub = input("Digite sua opção: ")
-            
-            if opcao_sub == "1":
-                consultarBanco()
-            elif opcao_sub == "2":
-                consultarPessoa()
-            elif opcao_sub == "3":
-                consultarViagens()
-            elif opcao_sub == "4":
-                consultarCaronas()                
-            elif opcao_sub == "5":
-                  consultarPendencias()
-            elif opcao_sub == "6": 
-                consultarPagos()
-            else:
-                print("Opção invalida, tente novamente...\n")
-              
-        elif opcao_menu == "2":
-    
-            print("1 - cadastras pessoa")
-            print("2 - cadastras viagem")
-            print("3 - Cadastrar carona")
-            opcao_sub = input("Digite usa opção: ")
-            
-            if opcao_sub == "1": 
-                cadastrarPessoa()
-            elif opcao_sub == "2":
-                criarCarona()
-            elif opcao_sub == "3":
-                pessoaCarona()
-            elif opcao_sub == "4":
-                alterarStatus()
-            else: 
-                print("Opção invalida, tente novamente...\n")
-        elif opcao_menu == "3":
-            input_personalizado = input("Digite seu input: ")
-            inputPersonalizado(input_personalizado)
-        else : 
-            print("Nenhuma opção valida, tente novamente...\n")
-            
-# chama a função
+    navegar_menu("MENU - Gerenciamento de Caronas", opcoes_principais)
+
 if __name__ == "__main__":
     main()
