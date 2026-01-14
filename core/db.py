@@ -118,6 +118,7 @@ def consultarViagens():
     con = conectar()
     cur = con.cursor()
     
+    
     cur.execute("SELECT * FROM carona")
     
     resultados = cur.fetchall()
