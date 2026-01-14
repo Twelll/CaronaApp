@@ -1,17 +1,12 @@
 import sqlite3
 import os
 
-# 1. Pega a pasta onde este ficheiro está: .../ProjetoCarona/core
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# 2. Sobe um nível para chegar à raiz: .../ProjetoCarona
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
-# 3. Define a pasta de dados: .../ProjetoCarona/data
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 
-# 4. Define os caminhos dentro da pasta data
-# ISTO É O QUE ESTAVA A FALHAR:
 DB_NAME = os.path.join(DATA_DIR, "caronas.db")
 SQL_FILE = os.path.join(DATA_DIR, "data.sql")
 

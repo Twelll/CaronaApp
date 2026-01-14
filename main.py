@@ -3,7 +3,7 @@ from core.pessoa import cadastrarPessoa
 from core.carona import criarCarona
 from core.pessoa_carona import pessoaCarona
 from core.create import inicializar_banco 
- 
+
 def main(): 
     inicializar_banco()
     
@@ -30,7 +30,6 @@ def main():
             print("6 - Pagos(Valor recibo)")
             opcao_sub = input("Digite sua opção: ")
             
-            
             if opcao_sub == "1":
                 consultarBanco()
             elif opcao_sub == "2":
@@ -44,7 +43,7 @@ def main():
             elif opcao_sub == "6": 
                 consultarPagos()
             else:
-                print("Opção invalida 1, tente novamente...\n")
+                print("Opção invalida, tente novamente...\n")
               
         elif opcao_menu == "2":
     

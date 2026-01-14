@@ -9,10 +9,14 @@ def cadastrarPessoa():
     
     #Requisita as informacoes pessoais
     print("Insira os seguintes dados abaixo para cadastrar uma pessoa\n")
-    
-    nome = input("Nome: ")
-    contato = input("Contato: ")
-    descricao = input("Descrição(opcional): ")
+    while True:
+        nome = input("Nome: ")
+        contato = input("Contato: ")
+        descricao = input("Descrição(opcional): ")
+        if nome != '' and contato != '':
+            break
+        else:
+            print("Insira as informações faltantes")
     
     con = conectar()
         

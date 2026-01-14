@@ -10,11 +10,20 @@ def pessoaCarona():
     print("Insira os seguintes dados abaixo para criar uma carona\n")
 
     consultarViagens() 
-    id_carona = input("ID Carona: ")
-    
-    consultarPessoa() 
-    id_pessoa = input("ID Pessoa: ")
-    status = input("Status(pago/pendente): ")
+    while True:
+        id_carona = input("ID Carona: ")
+        
+        consultarPessoa() 
+        id_pessoa = input("ID Pessoa: ")
+        status = input("Status(pago/pendente): ")
+
+        if id_carona != '' and id_pessoa != '':
+            if status == 'pago' or status == 'pendente':
+                break
+            else:
+                print("Status deve ser pago ou pendente apenas")
+        else:
+            print("Insira as informações faltantes")
     
     con = conectar()
     con.execute(

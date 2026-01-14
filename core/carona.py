@@ -11,10 +11,15 @@ def criarCarona():
     """
     
     print("Insira os seguintes dados abaixo para criar uma carona\n")
-    origem = input("Origem: ")
-    destino = input("Destino: ")
-    descricao = input("Descricao(opcional): ")
-    
+    while True:
+        origem = input("Origem: ")
+        destino = input("Destino: ")
+        descricao = input("Descricao(opcional): ")
+        if origem != '' and destino != '':
+            break
+        else: 
+            print("Insira as informações faltantes")
+        
     data = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     
     con = conectar()

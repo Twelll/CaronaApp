@@ -1,21 +1,14 @@
 import sqlite3
 import os
 
-# 1. Pega a pasta onde este ficheiro está (ex: .../ProjetoCarona/core)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-# 2. Sobe um nível para a raiz (ex: .../ProjetoCarona)
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
-# 3. Define a pasta de dados
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 
-# --- A CORREÇÃO ESTÁ AQUI ---
-# Antes estava provavelmente: os.path.join(ROOT_DIR, "data.sql")
-# DEVE SER:
 SQL_FILE = os.path.join(DATA_DIR, "data.sql") 
 
-# Define também o banco na mesma pasta
 DB_NAME = os.path.join(DATA_DIR, "caronas.db")
 
 def conectar():
