@@ -249,3 +249,125 @@ def alterarStatus():
         print(f"ERRO: Não foi possível atualizar. Detalhes: {e}")
     finally:
         con.close()
+        
+def excluirPessoa():
+    """
+    Solicita ao usuário os ID da pessoa para apagar a mesma.
+    Exibe a lista de pessoas para facilitar a identificação dos IDs.
+    """
+    con = conectar()
+    cur = con.cursor()
+
+    consultarPessoa()
+    
+    try:
+        v_pessoa = int(input("\nDigite o ID da Pessoa: "))
+
+        sql = "DELETE FROM pessoas WHERE id_pessoa = ?"
+        cur.execute(sql, (v_pessoa,))
+
+        if cur.rowcount > 0:
+            con.commit()
+            print(f"\nSISTEMA: Sucesso! {cur.rowcount} pessoa deletada.")
+        else:
+            print("\nSISTEMA: Nenhuma pessoa encontrada com esse ID.")
+
+    except ValueError:
+        print("\nERRO: O ID deve ser um número inteiro.")
+    except Exception as e:
+        print(f"\nERRO: Não foi possível excluir a pessoa. Detalhes: {e}")
+    finally:
+        con.close()
+        
+    
+def excluirViagem():
+    """
+    Solicita ao usuário o ID da viagem para apagá-la.
+    Exibe a lista de viagens para facilitar a identificação.
+    """
+    con = conectar()
+    cur = con.cursor()
+
+    consultarViagens()
+
+    try:
+        v_viagem = int(input("\nDigite o ID da viagem: "))
+
+        sql = "DELETE FROM carona WHERE id_carona = ?"
+        cur.execute(sql, (v_viagem,))
+
+        if cur.rowcount > 0:
+            con.commit()
+            print(f"\nSISTEMA: Sucesso! {cur.rowcount} viagem deletada.")
+        else:
+            print("\nSISTEMA: Nenhuma viagem encontrada com esse ID.")
+
+    except ValueError:
+        print("\nERRO: O ID deve ser um número inteiro.")
+    except Exception as e:
+        print(f"\nERRO: Não foi possível excluir a viagem. Detalhes: {e}")
+    finally:
+        con.close()
+     
+def excluirCarona():
+    """
+    Solicita ao usuário o ID da carona para apagá-la.
+    Exibe a lista de viagens para facilitar a identificação.
+    """
+    con = conectar()
+    cur = con.cursor()
+
+    consultarViagens()
+
+    try:
+        v_carona = int(input("\nDigite o ID da carona: "))
+
+        sql = "DELETE FROM carona WHERE id_carona = ?"
+        cur.execute(sql, (v_carona,))
+
+        if cur.rowcount > 0:
+            con.commit()
+            print(f"\nSISTEMA: Sucesso! {cur.rowcount} carona deletada.")
+        else:
+            print("\nSISTEMA: Nenhuma carona encontrada com esse ID.")
+
+    except ValueError:
+        print("\nERRO: O ID deve ser um número inteiro.")
+    except Exception as e:
+        print(f"\nERRO: Não foi possível excluir a carona. Detalhes: {e}")
+    finally:
+        con.close()
+     
+
+def alterarStatus():
+    """
+    Solicita ao usuário os IDs de pessoa e carona para apagar a mesma.
+    Exibe a lista de caronas antes para facilitar a identificação dos IDs.
+    """
+    con = conectar()
+    cur = con.cursor()
+
+    consultarCaronas() 
+
+    v_pessoa = int(input("Digite o ID_Pessoa: "))
+    v_carona = int(input("Digite o ID da Carona: "))
+    
+    sql = """
+        UPDATE pessoa_carona
+        SET status = 'pago'
+        WHERE id_pessoa = ? AND id_carona = ? 
+    """
+    try:
+        cur.execute(sql, (v_pessoa, v_carona))
+        
+        if cur.rowcount > 0:
+            con.commit() 
+            # O print agora faz sentido com o comando SQL
+            print(f"\nSISTEMA: Sucesso! Status da carona alterado para 'pago'.")
+        else:
+            print("\nSISTEMA: Nenhuma carona encontrada com esses IDs.")
+            
+    except Exception as e:
+        print(f"ERRO: Não foi possível atualizar. Detalhes: {e}")
+    finally:
+        con.close()

@@ -46,12 +46,21 @@ def menu_consultas():
     }
     navegar_menu("MENU - Consultas", opcoes)
 
-def menu_alteracoes():
+def menu_cadastros():
     opcoes = {
         "1": ("Cadastrar pessoa", cadastrarPessoa),
         "2": ("Cadastrar viagem", criarCarona),
         "3": ("Cadastrar carona (vincular)", pessoaCarona),
-        "4": ("Alterar Status", lambda: print("Função alterarStatus não importada/definida neste contexto")), # Ajuste aqui com a função real
+        "0": ("Voltar", lambda: False)
+    }
+    navegar_menu("MENU - Alterações", opcoes)
+    
+def menu_alteracoes():
+    opcoes = {
+        "1": ("Excluir pessoa", excluirPessoa),
+        "2": ("Excluir viagem", excluirViagem),
+        "3": ("Excluir carona (vinculo)", excluirCarona),
+        "4": ("Alterar Status de pagamento", alterarStatus), 
         "0": ("Voltar", lambda: False)
     }
     navegar_menu("MENU - Alterações", opcoes)
@@ -63,8 +72,9 @@ def main():
     # Menu Principal
     opcoes_principais = {
         "1": ("Consultas", menu_consultas),
-        "2": ("Alterações", menu_alteracoes),
-        "3": ("Query (Avançado)", wrapper_query),
+        "2": ("Cadastros", menu_cadastros),
+        "3": ("Alterações", menu_alteracoes),
+        "4": ("Query (Avançado)", wrapper_query),
         "0": ("Sair", sair_programa)
     }
 
