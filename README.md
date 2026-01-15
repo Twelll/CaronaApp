@@ -24,8 +24,6 @@ CaronaManager/
 │   ├─ carona.py
 │   ├─ pessoa_carona.py
 │   └─ create.py
-│
-├─ requirements.txt    # Dependências do projeto(No momento nenhuma)
 ├─ README.md           # Este arquivo
 ├─ main.py
 └─ .gitignore          # Arquivos ignorados pelo Git
@@ -60,13 +58,7 @@ git clone https://github.com/seu-usuario/CaronaManager.git
 cd CaronaManager
 ```
 
-2. Instale dependências (nenhuma no momento):
-
-```bash
-pip install -r requirements.txt
-```
-
-3. Execute o programa:
+2. Execute o programa:
 
 ```bash
 python main.py
