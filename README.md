@@ -45,7 +45,6 @@ CaronaManager/
 ## 🚀 Funcionalidades futuras
 
 * Interface gráfica com Tkinter ou Flask
-* Atualização e exclusão de registros
 * Exportação de dados para CSV
 ---
 
