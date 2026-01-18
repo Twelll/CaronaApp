@@ -74,7 +74,12 @@ python main.py
 O banco é **SQLite** e é criado automaticamente ao rodar o programa.
 
 ---
+## Desenvolvedores
 
+| [<img loading="lazy" src="https://avatars.githubusercontent.com/u/162636181?v=4" width=115><br><sub>Thiago Wesley</sub>](https://github.com/Twelll) |
+:---: 
+
+---
 ## 📝 Licença
 
 MIT License — sinta-se livre para usar, estudar e contribuir no projeto.
